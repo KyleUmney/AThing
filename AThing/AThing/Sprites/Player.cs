@@ -45,15 +45,13 @@ namespace AThing.Sprites
 
       var direction = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90)));
 
-
-
       if (Keyboard.GetState().IsKeyDown(Input.Up))
         Position += direction * _speed;
 
       if (Keyboard.GetState().IsKeyDown(Input.Down))
         Position -= direction * _speed;
 
-      var distance =  _enemy.Position - Position; //Mouse.GetState().Position.ToVector2()
+      var distance = Mouse.GetState().Position.ToVector2() - Position; //Mouse.GetState().Position.ToVector2()
 
       _rotation = (float)Math.Atan2(distance.Y, distance.X) + MathHelper.ToRadians(90);
     }
