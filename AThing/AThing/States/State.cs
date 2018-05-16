@@ -29,6 +29,5 @@ namespace AThing.States
     public abstract void PostUpdate(GameTime gameTime);
 
     public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
-
   }
 }

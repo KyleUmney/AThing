@@ -15,34 +15,22 @@ namespace AThing.Sprites
   {
     private float _speed = 10f;
 
-    private CrazyBug _enemy;
-
     public int Health { get; set; }
 
     public Input Input { get; set; }
 
+    public float ShootingTimer = 3f;
+
+    public Bullet Bullet { get; set; }
+
     public Player(Texture2D texture)
       : base(texture)
     {
-
+      Type = SpriteType.Player;
     }
 
     public override void Update(GameTime gameTime)
     {
-      Vector2 velocity = new Vector2();
-
-      //if (Keyboard.GetState().IsKeyDown(Input.Right))
-      //  _rotation += MathHelper.ToRadians(10);
-
-      //if (Keyboard.GetState().IsKeyDown(Input.Left))
-      //  _rotation -= MathHelper.ToRadians(10);
-
-      if (Keyboard.GetState().IsKeyDown(Input.Up))
-        velocity.Y -= 10;
-
-      if (Keyboard.GetState().IsKeyDown(Input.Down))
-        velocity.Y += 10;
-
       var direction = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90)));
 
       if (Keyboard.GetState().IsKeyDown(Input.Up))
@@ -51,9 +39,51 @@ namespace AThing.Sprites
       if (Keyboard.GetState().IsKeyDown(Input.Down))
         Position -= direction * _speed;
 
-      var distance = Mouse.GetState().Position.ToVector2() - Position; //Mouse.GetState().Position.ToVector2()
+      LookAt();
 
-      _rotation = (float)Math.Atan2(distance.Y, distance.X) + MathHelper.ToRadians(90);
+      CanShoot = true;
+
+      if (CanShoot == true && ShootingTimer >= 3f)
+      {
+        Shooting(12f);
+        CanShoot = false;
+        ShootingTimer = 0f;
+      }
+      else if(CanShoot == false && ShootingTimer != 3f)
+      {
+        ShootingTimer++;
+        if (ShootingTimer >= 3f)
+        {
+          CanShoot = true;
+        }
+      }
+    }
+
+    private void LookAt()
+    {
+      if (Sprites != null && Sprites.Any(c => c is CrazyBug))
+      {
+        var enemies = Sprites.Where(c => c is CrazyBug).Select(c => (CrazyBug)c).ToList();
+        if (enemies.Count > 0)
+        {
+          var distance = enemies[0].Position - Position;
+
+          _rotation = (float)Math.Atan2(distance.Y, distance.X) + MathHelper.ToRadians(90);
+        }
+      }
+    }
+
+    private void Shooting(float speed)
+    {
+      var bullet = Bullet.Clone() as Bullet;
+      bullet.Position = this.Position;
+      bullet.Colour = this.Colour;
+      bullet.Layer = 0.1f;
+      bullet.LifeSpan = 10f;
+      bullet.Velocity = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90)));
+      bullet.Parent = this;
+
+      Children.Add(bullet);
     }
   }
 }
