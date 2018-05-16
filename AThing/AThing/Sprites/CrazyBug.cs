@@ -13,30 +13,25 @@ namespace AThing.Sprites
   {
     private float _speed = 3f;
 
-    private List<Vector2> wayPoints = new List<Vector2>
-    {
-      new Vector2(0,0),
-      new Vector2(500,100),
-      new Vector2(500,400),
-      new Vector2(100,400),
-    };
-
     private int _wayPointIndex;
 
     private Vector2 _currentWaypoint;
 
     public int Health { get; set; }
 
+    public string Name { get; set; }
+
     public CrazyBug(Texture2D texture)
       : base(texture)
     {
       _wayPointIndex = 0;
+      Type = SpriteType.Enemy;
     }
 
     public override void Update(GameTime gameTime)
     {
-      if (wayPoints.Count > 0)
-        _currentWaypoint = wayPoints[_wayPointIndex];
+      if (_wayPoints.Count > 0)
+        _currentWaypoint = _wayPoints[_wayPointIndex];
 
       MoveToWaypoint(gameTime);
 
@@ -51,18 +46,17 @@ namespace AThing.Sprites
 
       Vector2 direction = targetPosition - currentPosition;
 
-      Position += direction / 10;
+      Position += direction / 20f;
 
       if (Vector2.Distance(currentPosition, targetPosition) < 10f)
       {
         _wayPointIndex++;
-        if (_wayPointIndex >= wayPoints.Count)
+        if (_wayPointIndex >= _wayPoints.Count)
           _wayPointIndex = 0;
       }
 
       Vector2 dir = targetPosition - Position;
       float angle = (float)Math.Atan2(dir.Y, dir.X);
-
     }
   }
 }

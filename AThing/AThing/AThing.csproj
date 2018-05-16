@@ -50,6 +50,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spawner.cs" />
+    <Compile Include="Sprites\Bullet.cs" />
     <Compile Include="Sprites\Button.cs" />
     <Compile Include="Sprites\CrazyBug.cs" />
     <Compile Include="Sprites\Player.cs" />
