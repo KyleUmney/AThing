@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Development/Mono/AThing/AThing/Content/Sprites/Enemy.png</SourceFile>
-  <SourceTime>2018-05-11T15:47:44.7125717+01:00</SourceTime>
-  <DestFile>C:/Development/Mono/AThing/AThing/Content/bin/Windows/Sprites/Enemy.xnb</DestFile>
-  <DestTime>2018-05-14T10:57:29.5461169+01:00</DestTime>
+  <SourceFile>C:/Users/kyle/Documents/GitHub/AThing/AThing/AThing/Content/Sprites/Enemy.png</SourceFile>
+  <SourceTime>2018-05-11T19:34:55.2365151+01:00</SourceTime>
+  <DestFile>C:/Users/kyle/Documents/GitHub/AThing/AThing/AThing/Content/bin/Windows/Sprites/Enemy.xnb</DestFile>
+  <DestTime>2018-05-16T22:12:30.6071734+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T15:05:36+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

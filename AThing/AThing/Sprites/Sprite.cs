@@ -66,8 +66,6 @@ namespace AThing.Sprites
 
     public bool IsRemoved { get; set; }
 
-    public bool CanShoot { get; set; }
-
     public SpriteType Type { get; set; }
 
     public List<Sprite> Children { get; set; }
@@ -95,12 +93,10 @@ namespace AThing.Sprites
         return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
       }
     }
-<<<<<<< HEAD
-=======
     public Sprite Parent;
 
     public List<Sprite> Sprites { get; set; }
->>>>>>> 770bfaa5d5b7e16d87377806f1f3bcc0527b16ca
+
 
     public Sprite(Texture2D texture)
     {

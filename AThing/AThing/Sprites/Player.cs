@@ -13,15 +13,15 @@ namespace AThing.Sprites
 {
   public class Player : Sprite
   {
-    private float _speed = 10f;
-
     public int Health { get; set; }
 
     public Input Input { get; set; }
 
-    public float ShootingTimer = 3f;
+    public float ShootingTimer = 100f;
 
     public Bullet Bullet { get; set; }
+
+    public bool CanShoot = true;
 
     public Player(Texture2D texture)
       : base(texture)
@@ -33,26 +33,18 @@ namespace AThing.Sprites
     {
       var direction = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90)));
 
-      if (Keyboard.GetState().IsKeyDown(Input.Up))
-        Position += direction * _speed;
-
-      if (Keyboard.GetState().IsKeyDown(Input.Down))
-        Position -= direction * _speed;
-
       LookAt();
 
-      CanShoot = true;
-
-      if (CanShoot == true && ShootingTimer >= 3f)
+      if (CanShoot == true && ShootingTimer >= 100f)
       {
-        Shooting(12f);
+        Shooting(50f);
         CanShoot = false;
         ShootingTimer = 0f;
       }
-      else if(CanShoot == false && ShootingTimer != 3f)
+      else if (CanShoot == false && ShootingTimer != 100f)
       {
         ShootingTimer++;
-        if (ShootingTimer >= 3f)
+        if (ShootingTimer >= 100f)
         {
           CanShoot = true;
         }
@@ -80,7 +72,7 @@ namespace AThing.Sprites
       bullet.Colour = this.Colour;
       bullet.Layer = 0.1f;
       bullet.LifeSpan = 10f;
-      bullet.Velocity = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90)));
+      bullet.Velocity = new Vector2((float)Math.Cos(_rotation - MathHelper.ToRadians(+90)), (float)Math.Sin(_rotation - MathHelper.ToRadians(+90))) * speed;
       bullet.Parent = this;
 
       Children.Add(bullet);

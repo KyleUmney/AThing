@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AThing.Sprites
 {
-  public class Bullet : Sprite
+  public class Map : Sprite
   {
     private float _timer;
 
@@ -16,7 +16,7 @@ namespace AThing.Sprites
 
     public Vector2 Velocity { get; set; }
 
-    public Bullet(Texture2D texture)
+    public Map(Texture2D texture)
       : base(texture)
     {
     }
