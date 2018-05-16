@@ -35,6 +35,7 @@ namespace AThing.Sprites
         return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
       }
     }
+
     public Sprite(Texture2D texture)
     {
       _texture = texture;

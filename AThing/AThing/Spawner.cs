@@ -22,7 +22,6 @@ namespace AThing
     {
       _enemy = _content.Load<Texture2D>("Sprites/Enemy");
 
-     
     }
   }
 }
